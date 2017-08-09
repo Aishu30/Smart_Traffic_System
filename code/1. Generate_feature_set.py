@@ -38,11 +38,13 @@ for subdir, dirs, files in os.walk(rootdir):
 
                 mask = np.zeros(gray.shape, dtype=np.uint8)
                 cv2.fillPoly(mask, pts, (255,255,255))
+                #mask = cv2.bitwise_not(gray)
                 masked_image1 = cv2.bitwise_and(gray, mask)
                 cv2.imshow('mask',masked_image1)
 
                 mask = np.zeros(gray_p.shape, dtype=np.uint8)
                 cv2.fillPoly(mask, pts, (255,255,255))
+                #mask = cv2.bitwise_not(gray)
                 masked_image2 = cv2.bitwise_and(gray_p, mask)
                 cv2.imshow('mask',masked_image2)
 
@@ -63,6 +65,7 @@ for subdir, dirs, files in os.walk(rootdir):
                 cv2.imshow('framediff', frame_diff)
                 white = cv2.countNonZero(frame_diff)
                 black = cv2.countNonZero(masked_image1)
+                #print(len(cars)+len(cars1), white/float(black))
                 vehicleCount.append(count)
                 crowdDensity.append(white/float(black))
                 cv2.imshow('frame', frame)
